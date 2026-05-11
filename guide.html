@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Panduan Hebahan Geran — PPP UMS</title>
+<title>Sistem Hebahan Geran Automatik — PPP UMS</title>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=DM+Mono:ital,wght@0,400;0,500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -18,6 +18,7 @@
     --gray-light: #f1f5f9;
     --border: rgba(11,31,58,0.09);
     --green: #10b981;
+    --red: #ef4444;
   }
   body {
     font-family: 'Sora', sans-serif;
@@ -30,7 +31,7 @@
 
   .hero {
     background: var(--navy);
-    padding: 80px 24px 90px;
+    padding: 60px 24px 80px;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -44,7 +45,6 @@
     pointer-events: none;
   }
 
-  /* internal-use banner */
   .internal-badge {
     position: relative;
     display: inline-flex;
@@ -52,107 +52,48 @@
     gap: 7px;
     background: rgba(255,255,255,0.07);
     border: 1px solid rgba(255,255,255,0.16);
-    color: rgba(255,255,255,0.55);
+    color: var(--gold-light);
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     padding: 6px 14px;
     border-radius: 100px;
-    margin-bottom: 10px;
-  }
-  .internal-badge .dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--gold);
-    flex-shrink: 0;
+    margin-bottom: 20px;
   }
 
-  .tag {
-    position: relative;
-    display: inline-block;
-    background: rgba(245,158,11,0.12);
-    border: 1px solid rgba(245,158,11,0.35);
-    color: var(--gold-light);
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    padding: 5px 14px;
-    border-radius: 100px;
-    margin-bottom: 22px;
-  }
   .hero h1 {
     position: relative;
-    font-size: clamp(28px, 4.5vw, 50px);
+    font-size: clamp(24px, 4vw, 42px);
     font-weight: 700;
     color: var(--white);
-    line-height: 1.18;
-    max-width: 640px;
+    line-height: 1.2;
+    max-width: 800px;
     margin: 0 auto 12px;
   }
   .hero h1 em { color: var(--gold); font-style: normal; }
-  .hero .tagline {
-    position: relative;
-    font-size: 14px;
-    color: rgba(255,255,255,0.45);
-    font-weight: 300;
-    margin-bottom: 52px;
-    letter-spacing: 0.3px;
-  }
 
-  .flow {
+  /* AUDIT HIGHLIGHTS SECTION */
+  .audit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    max-width: 900px;
+    margin: 40px auto 0;
     position: relative;
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
-    gap: 0;
-    max-width: 520px;
-    margin: 0 auto 44px;
   }
-  .flow-card {
-    flex: 1;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 18px;
-    padding: 24px 20px 22px;
-    text-align: center;
-  }
-  .flow-card .ico { font-size: 30px; margin-bottom: 12px; }
-  .flow-card .ttl { font-size: 13px; font-weight: 700; color: white; margin-bottom: 5px; }
-  .flow-card .url-chip {
-    display: inline-block;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.12);
-    color: rgba(255,255,255,0.5);
-    padding: 3px 9px;
-    border-radius: 6px;
-    margin-top: 4px;
-    word-break: break-all;
-  }
-  .flow-sep { display: flex; align-items: center; padding: 0 14px; flex-shrink: 0; }
-
-  .cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--gold);
-    color: var(--navy);
-    font-family: 'Sora', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    padding: 15px 34px;
+  .audit-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px dashed rgba(255,255,255,0.2);
+    padding: 20px;
     border-radius: 12px;
-    text-decoration: none;
-    box-shadow: 0 4px 22px rgba(245,158,11,0.38);
-    transition: transform 0.15s, box-shadow 0.15s;
-    position: relative;
+    text-align: left;
   }
-  .cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,158,11,0.52); }
+  .audit-card h3 { color: var(--gold); font-size: 14px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+  .audit-card p { color: rgba(255,255,255,0.7); font-size: 12px; line-height: 1.5; }
 
-  .body { max-width: 620px; margin: 0 auto; padding: 56px 24px 72px; flex: 1; }
+  .body { max-width: 800px; margin: 0 auto; padding: 40px 24px; flex: 1; }
+  
   .section-lbl {
     font-size: 10px;
     font-weight: 600;
@@ -161,179 +102,183 @@
     color: var(--blue);
     margin-bottom: 10px;
   }
-  .section-ttl { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 24px; }
+  .section-ttl { font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 30px; }
 
-  .fields { display: flex; flex-direction: column; gap: 8px; }
-  .field {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px 18px;
-  }
-  .field .fi { font-size: 19px; flex-shrink: 0; margin-top: 1px; }
-  .field .fd h4 {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--navy);
-    margin-bottom: 3px;
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    flex-wrap: wrap;
-  }
-  .field .fd p { font-size: 12.5px; color: var(--gray); font-weight: 300; line-height: 1.55; }
-  .req { font-size: 9px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; background: #fee2e2; color: #b91c1c; padding: 2px 7px; border-radius: 4px; }
-  .opt { font-size: 9px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; background: #f1f5f9; color: #94a3b8; padding: 2px 7px; border-radius: 4px; }
-
-  /* check website card */
-  .check-card {
-    margin-top: 36px;
+  /* LOGIC STEPS */
+  .logic-container {
     background: var(--white);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 24px 24px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+  }
+  .logic-step {
     display: flex;
-    align-items: center;
-    gap: 18px;
+    gap: 20px;
+    margin-bottom: 25px;
+    position: relative;
   }
-  .check-icon {
-    width: 48px; height: 48px;
-    background: #f0fdf4;
-    border: 1px solid #bbf7d0;
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px;
-    flex-shrink: 0;
+  .logic-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 17px;
+    top: 40px;
+    bottom: -20px;
+    width: 2px;
+    background: var(--gray-light);
   }
-  .check-text p {
-    font-size: 13.5px;
-    color: var(--gray);
-    font-weight: 300;
-    line-height: 1.6;
-    margin-bottom: 10px;
-  }
-  .check-text p strong { color: var(--navy); font-weight: 600; }
-  .check-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
+  .step-num {
+    width: 36px; height: 36px;
     background: var(--navy);
     color: white;
-    font-size: 12.5px;
-    font-weight: 600;
-    padding: 9px 18px;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: opacity 0.15s;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px; flex-shrink: 0;
   }
-  .check-link:hover { opacity: 0.85; }
+  .step-content h4 { font-size: 16px; margin-bottom: 6px; }
+  .step-content p { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+  /* COLOR CODE TABLE */
+  .status-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 12px;
+  }
+  .status-table td { padding: 10px; border-bottom: 1px solid var(--gray-light); }
+  .status-pill { padding: 4px 10px; border-radius: 4px; font-weight: 600; font-size: 10px; }
+  .pill-red { background: #fee2e2; color: #b91c1c; }
+  .pill-yellow { background: #fef3c7; color: #92400e; }
+  .pill-green { background: #d1fae5; color: #065f46; }
+
+  .cta-block {
+    text-align: center;
+    background: var(--navy);
+    padding: 40px;
+    border-radius: 20px;
+    color: white;
+    margin-top: 20px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 14px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    margin-top: 20px;
+  }
 
   footer {
-    background: var(--navy);
+    background: #f8fafc;
     text-align: center;
-    padding: 26px 24px;
-    font-size: 12.5px;
-    color: rgba(255,255,255,0.35);
-    font-weight: 300;
+    padding: 30px;
+    font-size: 12px;
+    color: var(--gray);
+    border-top: 1px solid var(--border);
   }
-  footer strong { color: rgba(255,255,255,0.6); font-weight: 600; }
 </style>
 </head>
 <body>
 
 <section class="hero">
-  <div style="position:relative;margin-bottom:14px;">
-    <div class="internal-badge">
-      <span class="dot"></span>
-      Kegunaan Urusetia PPP Sahaja
+  <div class="internal-badge">Dokumentasi Sistem PPP UMS</div>
+  <h1>Automasi Ekosistem Hebahan Geran<br><em>Efficiency via Google App Script</em></h1>
+  
+  <div class="audit-grid">
+    <div class="audit-card">
+      <h3>⚡ Zero Manual Entry</h3>
+      <p>Data dari Google Form diproses secara masa-nyata (Real-time) ke pangkalan data laman web tanpa intervensi manusia.</p>
+    </div>
+    <div class="audit-card">
+      <h3>📊 Smart Priority</h3>
+      <p>Sistem menyusun geran berdasarkan 'Deadline' terdekat secara automatik menggunakan algoritma sorting.</p>
+    </div>
+    <div class="audit-card">
+      <h3>🎨 Dynamic UI</h3>
+      <p>Paparan web berubah mengikut status tarikh tutup (Color-coded indicators) bagi memudahkan penyelidik.</p>
     </div>
   </div>
-  <div class="tag">Pusat Pengurusan Penyelidikan — PPP UMS</div>
-  <h1>Hebahan Geran<br><em>Isi Borang. Terus Tersiar.</em></h1>
-  <p class="tagline">Hantar sekali — hebahan muncul automatik di laman web PPP UMS</p>
-
-  <div class="flow">
-    <div class="flow-card">
-      <div class="ico">📋</div>
-      <div class="ttl">Isi Google Form</div>
-      <div class="url-chip">docs.google.com/forms/…</div>
-    </div>
-    <div class="flow-sep">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path d="M6 14h16M16 8l6 6-6 6" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <div class="flow-card">
-      <div class="ico">🌐</div>
-      <div class="ttl">Tersiar di Laman PPP</div>
-      <div class="url-chip">ums.edu.my/ppp/…/grants-announcement</div>
-    </div>
-  </div>
-
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdLW6AY0hFf7qI3PszWhpwaM0gdlEoB7ew6VG-F8HIWazzgoA/viewform" target="_blank" class="cta">
-    📤 &nbsp;Buka Borang Sekarang
-  </a>
 </section>
 
 <div class="body">
-  <div class="section-lbl">Maklumat diperlukan</div>
-  <div class="section-ttl">Sediakan perkara ini sebelum isi borang</div>
+  <div class="section-lbl">Aliran Kerja Sistem</div>
+  <div class="section-ttl">Bagaimana Automasi Berfungsi?</div>
 
-  <div class="fields">
-    <div class="field">
-      <div class="fi">🖼️</div>
-      <div class="fd">
-        <h4>Poster Hebahan <span class="req">Wajib</span></h4>
-        <p>Fail imej (JPG / PNG). Muat naik sehingga 5 fail, maksimum 10 MB setiap satu.</p>
+  <div class="logic-container">
+    <div class="logic-step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Input Data Terpusat</h4>
+        <p>Staf memasukkan maklumat geran melalui Google Form yang mempunyai validasi data (Required fields) untuk mengelakkan ralat maklumat.</p>
       </div>
     </div>
-    <div class="field">
-      <div class="fi">📌</div>
-      <div class="fd">
-        <h4>Nama Geran <span class="req">Wajib</span></h4>
-        <p>Nama penuh geran. Cth: <em>Hebahan Geran Penyelidikan ICGEB</em></p>
+
+    <div class="logic-step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Pemprosesan App Script</h4>
+        <p>Skrip bertindak sebagai 'engine' yang mengira baki hari: <strong>$Hari = Tarikh Tutup - Tarikh Semasa$</strong>. Jika geran telah luput, ia akan diasingkan secara automatik.</p>
+        
+        <table class="status-table">
+          <tr>
+            <td><span class="status-pill pill-red">Kritikal</span></td>
+            <td>Baki < 3 hari (Warna Merah - Amaran)</td>
+          </tr>
+          <tr>
+            <td><span class="status-pill pill-yellow">Aktif</span></td>
+            <td>Baki 4 - 30 hari (Warna Jingga)</td>
+          </tr>
+          <tr>
+            <td><span class="status-pill pill-green">Baru</span></td>
+            <td>Baki > 30 hari (Warna Hijau)</td>
+          </tr>
+        </table>
       </div>
     </div>
-    <div class="field">
-      <div class="fi">📝</div>
-      <div class="fd">
-        <h4>Penerangan <span class="req">Wajib</span></h4>
-        <p>Huraian ringkas — skop, kelayakan, atau maklumat penting berkaitan geran.</p>
-      </div>
-    </div>
-    <div class="field">
-      <div class="fi">📅</div>
-      <div class="fd">
-        <h4>Tarikh Tutup Permohonan <span class="req">Wajib</span></h4>
-        <p>Tarikh akhir penerimaan permohonan geran ini.</p>
-      </div>
-    </div>
-    <div class="field">
-      <div class="fi">📄</div>
-      <div class="fd">
-        <h4>Dokumen Garis Panduan <span class="opt">Pilihan</span></h4>
-        <p>PDF atau dokumen berkaitan garis panduan, jika ada.</p>
+
+    <div class="logic-step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Sinkronisasi Laman Web</h4>
+        <p>Data dihantar ke JSON endpoint atau API laman web PPP UMS. Laman web memaparkan jumlah geran aktif secara dinamik (Contoh: "Terdapat 5 Geran Aktif Hari Ini").</p>
       </div>
     </div>
   </div>
 
-  <!-- Check website card -->
-  <div class="check-card">
-    <div class="check-icon">✅</div>
-    <div class="check-text">
-      <p>Setelah borang dihantar, semak laman web PPP UMS untuk <strong>mengesahkan hebahan telah dikemaskini secara automatik.</strong></p>
-      <a href="https://ums.edu.my/ppp/index.php/grants-funds/grants-announcement" target="_blank" class="check-link">
-        🌐 &nbsp;Semak Laman Hebahan Geran →
-      </a>
+  <div class="section-lbl"></div>
+  <div class="section-ttl">Integriti Fail & Lampiran</div>
+  
+  <p style="font-size: 14px; color: var(--gray); margin-bottom: 20px;">
+    Setiap hebahan dijamin mempunyai dokumen sokongan yang disimpan secara sistematik dalam Cloud Storage (Google Drive) yang dipautkan terus ke paparan web.
+  </p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+    <div style="background: white; padding: 20px; border-radius: 12px; border: 1px solid var(--border);">
+      <strong style="font-size: 13px; display: block; margin-bottom: 5px;">🖼️ Poster Visual</strong>
+      <p style="font-size: 12px; color: var(--gray);">Maksimum 5 fail (10MB/fail) untuk visualisasi maklumat yang jelas.</p>
     </div>
+    <div style="background: white; padding: 20px; border-radius: 12px; border: 1px solid var(--border);">
+      <strong style="font-size: 13px; display: block; margin-bottom: 5px;">📄 Garis Panduan</strong>
+      <p style="font-size: 12px; color: var(--gray);">Dokumen PDF rasmi untuk rujukan kriteria kelayakan penyelidik.</p>
+    </div>
+  </div>
+
+  <div class="cta-block">
+    <h3>Uji Kecekapan Sistem</h3>
+    <p style="font-size: 13px; opacity: 0.8; margin-top: 10px;">Klik butang di bawah untuk melihat borang input rasmi yang digunakan oleh urusetia.</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdLW6AY0hFf7qI3PszWhpwaM0gdlEoB7ew6VG-F8HIWazzgoA/viewform" class="cta-btn">Buka Borang Input (Urusetia)</a>
+    <br><br>
+    <a href="https://ums.edu.my/ppp/index.php/grants-funds/grants-announcement" style="color: white; font-size: 12px;">Lihat Hasil Paparan Web Automatik →</a>
   </div>
 </div>
 
 <footer>
-  <strong>PPP UMS — Hebahan Geran Penyelidikan</strong> &nbsp;·&nbsp; Pusat Pengurusan Penyelidikan &nbsp;·&nbsp; Universiti Malaysia Sabah, Kota Kinabalu
+  <strong>Sistem Hebahan Geran PPP UMS</strong><br>
+  Dibangunkan untuk mengoptimumkan tadbir urus penyelidikan menerusi automasi digital.<br>
+  © 2026 Pusat Pengurusan Penyelidikan, Universiti Malaysia Sabah.
 </footer>
 
 </body>
