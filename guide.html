@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panduan Hebahan Geran — PPP UMS</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=DM+Mono:ital,wght@0,400;0,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0b1f3a;
+    --blue: #1a56db;
+    --gold: #f59e0b;
+    --gold-light: #fcd34d;
+    --white: #ffffff;
+    --cream: #faf8f4;
+    --gray: #64748b;
+    --gray-light: #f1f5f9;
+    --border: rgba(11,31,58,0.09);
+    --green: #10b981;
+  }
+  body {
+    font-family: 'Sora', sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero {
+    background: var(--navy);
+    padding: 80px 24px 90px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 10% 60%, rgba(16,185,129,0.12) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 50% at 90% 20%, rgba(245,158,11,0.1) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  /* internal-use banner */
+  .internal-badge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.16);
+    color: rgba(255,255,255,0.55);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 10px;
+  }
+  .internal-badge .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .tag {
+    position: relative;
+    display: inline-block;
+    background: rgba(245,158,11,0.12);
+    border: 1px solid rgba(245,158,11,0.35);
+    color: var(--gold-light);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    position: relative;
+    font-size: clamp(28px, 4.5vw, 50px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.18;
+    max-width: 640px;
+    margin: 0 auto 12px;
+  }
+  .hero h1 em { color: var(--gold); font-style: normal; }
+  .hero .tagline {
+    position: relative;
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    font-weight: 300;
+    margin-bottom: 52px;
+    letter-spacing: 0.3px;
+  }
+
+  .flow {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 0;
+    max-width: 520px;
+    margin: 0 auto 44px;
+  }
+  .flow-card {
+    flex: 1;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 18px;
+    padding: 24px 20px 22px;
+    text-align: center;
+  }
+  .flow-card .ico { font-size: 30px; margin-bottom: 12px; }
+  .flow-card .ttl { font-size: 13px; font-weight: 700; color: white; margin-bottom: 5px; }
+  .flow-card .url-chip {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.5);
+    padding: 3px 9px;
+    border-radius: 6px;
+    margin-top: 4px;
+    word-break: break-all;
+  }
+  .flow-sep { display: flex; align-items: center; padding: 0 14px; flex-shrink: 0; }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Sora', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 15px 34px;
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0 4px 22px rgba(245,158,11,0.38);
+    transition: transform 0.15s, box-shadow 0.15s;
+    position: relative;
+  }
+  .cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,158,11,0.52); }
+
+  .body { max-width: 620px; margin: 0 auto; padding: 56px 24px 72px; flex: 1; }
+  .section-lbl {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 10px;
+  }
+  .section-ttl { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 24px; }
+
+  .fields { display: flex; flex-direction: column; gap: 8px; }
+  .field {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 18px;
+  }
+  .field .fi { font-size: 19px; flex-shrink: 0; margin-top: 1px; }
+  .field .fd h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex-wrap: wrap;
+  }
+  .field .fd p { font-size: 12.5px; color: var(--gray); font-weight: 300; line-height: 1.55; }
+  .req { font-size: 9px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; background: #fee2e2; color: #b91c1c; padding: 2px 7px; border-radius: 4px; }
+  .opt { font-size: 9px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; background: #f1f5f9; color: #94a3b8; padding: 2px 7px; border-radius: 4px; }
+
+  /* check website card */
+  .check-card {
+    margin-top: 36px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 24px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .check-icon {
+    width: 48px; height: 48px;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .check-text p {
+    font-size: 13.5px;
+    color: var(--gray);
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .check-text p strong { color: var(--navy); font-weight: 600; }
+  .check-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--navy);
+    color: white;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 9px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .check-link:hover { opacity: 0.85; }
+
+  footer {
+    background: var(--navy);
+    text-align: center;
+    padding: 26px 24px;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.35);
+    font-weight: 300;
+  }
+  footer strong { color: rgba(255,255,255,0.6); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div style="position:relative;margin-bottom:14px;">
+    <div class="internal-badge">
+      <span class="dot"></span>
+      Kegunaan Urusetia PPP Sahaja
+    </div>
+  </div>
+  <div class="tag">Pusat Pengurusan Penyelidikan — PPP UMS</div>
+  <h1>Hebahan Geran<br><em>Isi Borang. Terus Tersiar.</em></h1>
+  <p class="tagline">Hantar sekali — hebahan muncul automatik di laman web PPP UMS</p>
+
+  <div class="flow">
+    <div class="flow-card">
+      <div class="ico">📋</div>
+      <div class="ttl">Isi Google Form</div>
+      <div class="url-chip">docs.google.com/forms/…</div>
+    </div>
+    <div class="flow-sep">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <path d="M6 14h16M16 8l6 6-6 6" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="flow-card">
+      <div class="ico">🌐</div>
+      <div class="ttl">Tersiar di Laman PPP</div>
+      <div class="url-chip">ums.edu.my/ppp/…/grants-announcement</div>
+    </div>
+  </div>
+
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdLW6AY0hFf7qI3PszWhpwaM0gdlEoB7ew6VG-F8HIWazzgoA/viewform" target="_blank" class="cta">
+    📤 &nbsp;Buka Borang Sekarang
+  </a>
+</section>
+
+<div class="body">
+  <div class="section-lbl">Maklumat diperlukan</div>
+  <div class="section-ttl">Sediakan perkara ini sebelum isi borang</div>
+
+  <div class="fields">
+    <div class="field">
+      <div class="fi">🖼️</div>
+      <div class="fd">
+        <h4>Poster Hebahan <span class="req">Wajib</span></h4>
+        <p>Fail imej (JPG / PNG). Muat naik sehingga 5 fail, maksimum 10 MB setiap satu.</p>
+      </div>
+    </div>
+    <div class="field">
+      <div class="fi">📌</div>
+      <div class="fd">
+        <h4>Nama Geran <span class="req">Wajib</span></h4>
+        <p>Nama penuh geran. Cth: <em>Hebahan Geran Penyelidikan ICGEB</em></p>
+      </div>
+    </div>
+    <div class="field">
+      <div class="fi">📝</div>
+      <div class="fd">
+        <h4>Penerangan <span class="req">Wajib</span></h4>
+        <p>Huraian ringkas — skop, kelayakan, atau maklumat penting berkaitan geran.</p>
+      </div>
+    </div>
+    <div class="field">
+      <div class="fi">📅</div>
+      <div class="fd">
+        <h4>Tarikh Tutup Permohonan <span class="req">Wajib</span></h4>
+        <p>Tarikh akhir penerimaan permohonan geran ini.</p>
+      </div>
+    </div>
+    <div class="field">
+      <div class="fi">📄</div>
+      <div class="fd">
+        <h4>Dokumen Garis Panduan <span class="opt">Pilihan</span></h4>
+        <p>PDF atau dokumen berkaitan garis panduan, jika ada.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Check website card -->
+  <div class="check-card">
+    <div class="check-icon">✅</div>
+    <div class="check-text">
+      <p>Setelah borang dihantar, semak laman web PPP UMS untuk <strong>mengesahkan hebahan telah dikemaskini secara automatik.</strong></p>
+      <a href="https://ums.edu.my/ppp/index.php/grants-funds/grants-announcement" target="_blank" class="check-link">
+        🌐 &nbsp;Semak Laman Hebahan Geran →
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong>PPP UMS — Hebahan Geran Penyelidikan</strong> &nbsp;·&nbsp; Pusat Pengurusan Penyelidikan &nbsp;·&nbsp; Universiti Malaysia Sabah, Kota Kinabalu
+</footer>
+
+</body>
+</html>
